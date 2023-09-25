@@ -1,0 +1,103 @@
+Step 1: Create the "StudentLibrary" Assembly
+
+Create a New C# Class Library Project:
+
+Create a new C# Class Library project in Visual Studio Code. Name it "StudentLibrary."
+Define the Student Class:
+
+dotnet new classlib -n StudentLibrary
+
+
+In the "StudentLibrary" project, create a class named Student:
+csharp
+
+namespace StudentLibrary
+{
+    public class Student
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+    }
+}
+This class defines a Name and Age property for a student.
+
+Build the "StudentLibrary" Assembly:
+
+Build the "StudentLibrary" project to create the assembly (DLL).
+Step 2: Create the "TeachersLibrary" Assembly
+
+Create a New C# Class Library Project:
+
+Create a new C# Class Library project in Visual Studio Code. Name it "TeachersLibrary."
+Define the Teacher Class:
+
+In the "TeachersLibrary" project, create a class named Teacher:
+csharp
+Copy code
+namespace TeachersLibrary
+{
+    public class Teacher
+    {
+        public string Name { get; set; }
+        public string Subject { get; set; }
+    }
+}
+This class defines a Name and Subject property for a teacher.
+
+Build the "TeachersLibrary" Assembly:
+
+Build the "TeachersLibrary" project to create the assembly (DLL).
+Step 3: Create the "CommonApp"
+
+Create a New C# Console Application Project:
+
+Create a new C# Console Application project in Visual Studio Code. Name it "CommonApp."
+Reference the "StudentLibrary" and "TeachersLibrary" Assemblies:
+
+In the "CommonApp" project, add references to both the "StudentLibrary" and "TeachersLibrary" assemblies:
+bash
+
+dotnet add reference ..\StudentLibrary\StudentLibrary.csproj
+dotnet add reference ..\TeachersLibrary\TeachersLibrary.csproj
+
+These commands add references to the assemblies located in their respective output directories.
+
+Use Classes from Both Assemblies:
+
+In the "CommonApp" project, create a Program class with a Main method:
+csharp
+Copy code
+using System;
+using StudentLibrary;
+using TeachersLibrary;
+
+class Program
+{
+    static void Main()
+    {
+        // Use the Student class from StudentLibrary
+        Student student = new Student
+        {
+            Name = "John Doe",
+            Age = 20
+        };
+
+        // Use the Teacher class from TeachersLibrary
+        Teacher teacher = new Teacher
+        {
+            Name = "Mrs. Smith",
+            Subject = "Math"
+        };
+
+        Console.WriteLine($"Student: {student.Name}, Age: {student.Age}");
+        Console.WriteLine($"Teacher: {teacher.Name}, Subject: {teacher.Subject}");
+    }
+}
+Build and Run the "CommonApp" Project:
+
+Build and run the "CommonApp" project using the following commands:
+bash
+Copy code
+dotnet build
+dotnet run
+You should see the student and teacher information displayed in the console.
